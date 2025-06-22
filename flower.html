@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        .flower{
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+.flower-img img {
+  width: 200px;
+  height: 200px;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    border-radius: 10px; 
+    cursor: pointer;/* Optional: Smooth edges */
+}
+
+.flower-img img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+        .flower-details {
+  padding: 20px;
+  text-align: left;
+}
+
+.flower-details h2 {
+  margin: 0 0 10px;
+  color: #c2185b;
+  font-size: 15px;
+}
+
+.price {
+  color: #e53935;
+  font-size: 1.3rem;
+  margin: 5px 0;
+}
+
+.desc {
+  color: #444;
+  margin: 10px 0;
+}
+
+.rating {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.cart-btn {
+  background-color: #ff4081;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cart-btn:hover {
+  background-color: #e91e63;
+}
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: linear-gradient(90deg,rgb(253, 232, 245),rgb(255, 234, 242));
+          padding: 8px 40px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-left .logo a {
+            font-size: 20px;
+            font-weight: 600;
+            color: #b4005b;
+            text-decoration: none;
+      }
+        
+
+        .nav-left .logo a:hover {
+            color:rgb(255, 0, 60); /* Light pink on hover */
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+            margin-left:10px;
+        }
+
+        .nav-center .search-input {
+            margin-left: 20px;
+            width: 100%;
+            padding: 10px 10px;
+            padding-left:20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+
+        .nav-center .search-input:focus {
+            box-shadow: 0 0 8px rgba(214, 51, 132, 0.5); /* Pink glow */
+        }
+
+        .nav-center .search-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: -40px;
+            cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-right a {
+            color: #b4005b;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-right a:hover {/* Darker pink on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        .nav-right .cart-icon {
+            padding: 8px;
+        }
+
+        .nav-right .cart-icon .material-icons-outlined {
+            font-size: 24px;
+            vertical-align: middle;
+        }
+
+        .nav-right .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .nav-right .user-info span {
+          color: #b4005b;
+            font-size: 1rem;
+        }
+
+        .nav-right .user-info a {
+            color: #b4005b;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-right .user-info a:hover {/* Match link hover */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-left">
+    <h1 class="logo"><a href="index2.php"> 💐 LUSH LOVE BLOOMS</a></h1>
+  </div>
+  <div class="nav-center">
+    <input type="text" placeholder="Search for flowers..." class="search-input">
+    <img src="./assets/search_icon.png" alt="Search Icon" class="search-icon">
+  </div>
+  <div class="nav-right">
+    <a href="index2.php">Home</a>
+    <a href="flower.html">Flower</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <?php if (isset($_SESSION['user_email'])): ?>
+      <div class="user-info">
+        <span> 👋 Welcome, User!</span>
+        <a href="logout.php">Logout</a>
+      </div>
+
+    <a href="cart2.html" class="cart-icon">
+      <span class="material-icons-outlined">shopping_cart</span>
+    </a>
+  </div>
+</nav>
+    <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/DEC2024/MixedGerberasBouquet-1733893328521.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Roses and Carnations in Vase</h2>
+      <p class="price">₹1500.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+        <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/DEC2024/PinkRosesBouquet-1733814404242.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Pink Roses Bouquet</h2>
+      <p class="price">₹1900.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+        <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/13774_93_13774.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Bouquet of Yellow Roses & Teddy</h2>
+      <p class="price">₹1300.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+        <div class="flower">
+        <div class="flower-img">
+            <img src="https://www.bloomsflora.com/_next/image?url=https%3A%2F%2Fcdn.bloomsflora.com%2Fuploads%2Fproduct%2Fbloomsflora%2F13571_80_13571.webp&w=828&q=75" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Pink Gerberas Bouquet</h2>
+      <p class="price">₹1700.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+            <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/OCT2024/1730096243926-13698.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Pink & Yellow Roses Bouquet With Teddy</h2>
+      <p class="price">₹1800.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+                <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/15715_44_15715.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Bouquet of Gerberas and Carnations</h2>
+      <p class="price">₹1900.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+      <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/14351_76_14351.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">White Lilies Bouquet</h2>
+      <p class="price">₹1200.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+      <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/15764_91_15764.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Radiance Yellow Rose Bouquet</h2>
+      <p class="price">₹1900.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+          <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/13178_34_13178.png" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Red & Pink Roses in Heart Shape Box</h2>
+      <p class="price">₹1900.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+              <div class="flower">
+        <div class="flower-img">
+            <img src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/DEC2024/MixedGerberasBouquet-1733893328521.webp" alt="">
+        </div>
+        <div>
+        <h2 class="flower-name">Mixed Gerberas Bouquet</h2>
+      <p class="price">₹1900.95</p>
+      <p class="desc">A stunning bouquet of red roses perfect for any occasion. Comes with free same-day delivery.</p>
+      <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+      <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+    <div class="flower">
+  <div class="flower-img">
+    <img src="https://assets.uaeflowers.com/uploads/product-pics/DSC03058C_13_9620.webp" alt="Yellow Tulips Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Yellow Tulips Bouquet</h2>
+    <p class="price">₹1750.50</p>
+    <p class="desc">Bright and cheerful yellow tulips to light up any room. Same-day delivery available.</p>
+    <p class="rating">⭐ 4.5 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://i.pinimg.com/originals/54/34/f1/5434f19c484d1cd8b143bb3eff575075.jpg" alt="Orchid Flower Arrangement">
+  </div>
+  <div>
+    <h2 class="flower-name">Orchid Flower Arrangement</h2>
+    <p class="price">₹2500.00</p>
+    <p class="desc">Elegant orchid arrangement for a sophisticated gift. Includes a stylish vase.</p>
+    <p class="rating">⭐ 4.9 | Earliest Delivery: Tomorrow</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://i.pinimg.com/originals/00/27/83/002783fea6a6196fef9d15acd9d7785c.jpg" alt="Sunflower Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Sunflower Bouquet</h2>
+    <p class="price">₹1600.75</p>
+    <p class="desc">Sunny and bright sunflower bouquet to spread happiness and warmth.</p>
+    <p class="rating">⭐ 4.7 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://cdn.shopify.com/s/files/1/0035/0332/5297/products/5509-white-lily-sympathy-bouquet-1bf46c8dc8bced17005e0b0df27849f5_1280x1280.jpg?v=1566668997" alt="White Lilies Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">White Lilies Bouquet</h2>
+    <p class="price">₹2100.00</p>
+    <p class="desc">Graceful white lilies, perfect for weddings and elegant occasions.</p>
+    <p class="rating">⭐ 4.8 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://th.bing.com/th/id/OIP.eNkHY291XToIwooGpeKJwAAAAA?rs=1&pid=ImgDetMain" alt="Mixed Wildflowers Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Mixed Wildflowers Bouquet</h2>
+    <p class="price">₹1400.25</p>
+    <p class="desc">A rustic bouquet of colorful wildflowers with a natural charm.</p>
+    <p class="rating">⭐ 4.4 | Earliest Delivery: Tomorrow</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://th.bing.com/th/id/OIP.BYHWhKaFwLBKyGZTv8jazwHaJQ?rs=1&pid=ImgDetMain" alt="Peony Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Peony Bouquet</h2>
+    <p class="price">₹2300.00</p>
+    <p class="desc">Luxurious peonies in soft pinks for an elegant and romantic gift.</p>
+    <p class="rating">⭐ 4.9 | Earliest Delivery: Tomorrow</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://cdn10.bigcommerce.com/s-s00dfko9/products/436/images/941/carnations_roses__90430.1488904677.1280.1280.jpg?c=2" alt="Red Carnations Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Red Carnations Bouquet</h2>
+    <p class="price">₹1450.50</p>
+    <p class="desc">Rich red carnations to express admiration and love. Fresh and fragrant.</p>
+    <p class="rating">⭐ 4.5 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://fyf.tac-cdn.net/images/products/large/F-604.jpg?auto=webp&quality=60&width=690" alt="Blue Hydrangeas Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Blue Hydrangeas Bouquet</h2>
+    <p class="price">₹2400.00</p>
+    <p class="desc">Beautiful blue hydrangeas bouquet, ideal for a fresh and calming vibe.</p>
+    <p class="rating">⭐ 4.7 | Earliest Delivery: Tomorrow</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://www.cakestoindia.com/wp-content/uploads/2022/06/499.jpg" alt="Orange Gerberas Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Orange Gerberas Bouquet</h2>
+    <p class="price">₹1800.25</p>
+    <p class="desc">Bright and vibrant orange gerberas to uplift the mood instantly.</p>
+    <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://cdn.igp.com/f_auto,q_auto,t_prodm/products/p-purple-orchids-for-mother-s-day-136065-m.jpg" alt="Purple Orchids Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Purple Orchids Bouquet</h2>
+    <p class="price">₹2600.00</p>
+    <p class="desc">Exotic purple orchids arranged in a stylish bouquet with a vase.</p>
+    <p class="rating">⭐ 4.9 | Earliest Delivery: Tomorrow</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://i.pinimg.com/originals/55/3e/24/553e24a0ad34d737116b58bdd15f312e.jpg" alt="White Roses Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">White Roses Bouquet</h2>
+    <p class="price">₹2000.00</p>
+    <p class="desc">Pure white roses bouquet symbolizing peace and innocence.</p>
+    <p class="rating">⭐ 4.8 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://assets.uaeflowers.com/uploads/product-pics/9134_72_9134.webp" alt="Red Tulips Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Red Tulips Bouquet</h2>
+    <p class="price">₹1700.00</p>
+    <p class="desc">Classic red tulips bouquet for a romantic and elegant gesture.</p>
+    <p class="rating">⭐ 4.6 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<div class="flower">
+  <div class="flower-img">
+    <img src="https://i.pinimg.com/736x/06/0a/e4/060ae40da6f1cb17d94607fdafe94a4d.jpg" alt="Mixed Carnations Bouquet">
+  </div>
+  <div>
+    <h2 class="flower-name">Mixed Carnations Bouquet</h2>
+    <p class="price">₹1500.75</p>
+    <p class="desc">A colorful bouquet of carnations to brighten any celebration.</p>
+    <p class="rating">⭐ 4.5 | Earliest Delivery: Today</p>
+    <button class="cart-btn">Add to Cart</button>
+  </div>
+</div>
+</body>
+</html>

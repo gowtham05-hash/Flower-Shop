@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Search Test</title>
+  <style>
+    #product-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .product-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 150px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" class="search-input" placeholder="Search product..." />
+  <div id="product-list"></div>
+
+  <script>
+    const shopItemsData = [
+      { id: "1", name: "Pink Roses Bouquet", price: 499, rate: 4.8, img: "https://via.placeholder.com/150?text=Pink+Roses" },
+      { id: "2", name: "Sunflower Bouquet", price: 299, rate: 4.5, img: "https://via.placeholder.com/150?text=Sunflower" },
+      { id: "3", name: "Lilies Bouquet", price: 399, rate: 4.7, img: "https://via.placeholder.com/150?text=Lilies" }
+    ];
+
+    const productList = document.getElementById('product-list');
+    const searchInput = document.querySelector('.search-input');
+
+    function renderProducts(products) {
+      productList.innerHTML = '';
+      if (products.length === 0) {
+        productList.innerHTML = '<p>No products found.</p>';
+        return;
+      }
+      products.forEach(item => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product-item';
+        productDiv.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" style="width:150px;height:auto;" />
+          <h4>${item.name}</h4>
+          <p>Price: ₹${item.price.toFixed(2)}</p>
+          <p>Rating: ${item.rate} ⭐</p>
+        `;
+        productList.appendChild(productDiv);
+      });
+    }
+
+    renderProducts(shopItemsData);
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const filteredProducts = shopItemsData.filter(item =>
+        item.name.toLowerCase().includes(query)
+      );
+      renderProducts(filteredProducts);
+    });
+  </script>
+</body>
+</html>

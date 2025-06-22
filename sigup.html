@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flower Shop - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module" src="firebase.js"></script>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .signup-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 360px;
+      text-align: center;
+    }
+
+    .signup-box h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+
+    .signup-box p {
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #d63384;
+      color: white;
+      padding: 12px 0;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #c02672;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .link a {
+      color: #d63384;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    .social-login {
+      margin-top: 25px;
+    }
+
+    .social-login p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .social-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .social-btn.google {
+      background-color: #db4437;
+    }
+
+    .social-btn.instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    .social-btn.twitter {
+      background-color: #1da1f2;
+    }
+.messageDiv {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #d4edda;  
+  color: #155724;  
+  padding: 15px 25px;
+  border-left: 6px solid #28a745;  
+  border-radius: 8px;
+  font-size: 20px;  
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Slight shadow for 3D effect */
+  opacity: 0;  /* Initially hidden */
+  transform: translateY(-20px);  /* Slightly moved up initially */
+  transition: opacity 0.5s ease, transform 0.5s ease;  /* Smooth fade and movement transition */
+  z-index: 9999;  /* High z-index to ensure it's on top */
+}
+
+/* When the message is shown, apply the fade-in and slide-down effect */
+.messageDiv.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation for the message (slide-in and fade-in effect) */
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="signup-box">
+      <h2>Join Us 🌷</h2>
+      <p>Create your flower account</p>
+      <form onsubmit="return validateSignup()"" method='POST'>
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+        <input type="text" id="fullname" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" id="submitSignUp">Sign Up</button>
+      </form>
+      
+      <div class="social-login">
+        <p>Or sign up with</p>
+        <div class="social-icons">
+          <a href="#" class="social-btn google" title="Sign up with Google"><i class="fab fa-google"></i></a>
+          <a href="#" class="social-btn instagram" title="Sign up with Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn twitter" title="Sign up with Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="link">
+        Already have an account? <a href="sigin.html">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function validateSignup() {
+      const name = document.getElementById("fullname").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (name && email && password) {
+        alert("Sign up successful!");
+        return true;
+      }
+      alert("Please fill all fields.");
+      return false;
+    }
+  </script>
+</body>
+</html>

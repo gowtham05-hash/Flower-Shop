@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add/Edit Product - Flower Admin</title>
+  <style>
+    .form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #ff69b4;
+  margin-bottom: 25px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  margin-top: 20px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #ff1493;
+}
+
+#imagePreview img {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>🌸 Add / Edit Flower Product</h2>
+    <form id="productForm">
+      <label for="productName">Flower Name</label>
+      <input type="text" id="productName" placeholder="e.g. Rose Bouquet" required />
+
+      <label for="productPrice">Price ($)</label>
+      <input type="number" id="productPrice" placeholder="e.g. 29.99" required />
+
+      <label for="productCategory">Category</label>
+      <select id="productCategory" required>
+        <option value="">Select category</option>
+        <option value="Bouquet">Bouquet</option>
+        <option value="Single Flower">Single Flower</option>
+        <option value="Custom">Custom Arrangement</option>
+      </select>
+
+      <label for="productImage">Image</label>
+      <input type="file" id="productImage" accept="image/*" onchange="previewImage()" />
+      <div id="imagePreview"></div>
+
+      <label for="productDesc">Description</label>
+      <textarea id="productDesc" placeholder="Short description..." rows="4"></textarea>
+
+      <button type="submit">Save Product</button>
+    </form>
+  </div>
+
+  <script>
+    function previewImage() {
+      const file = document.getElementById('productImage').files[0];
+      const preview = document.getElementById('imagePreview');
+      preview.innerHTML = '';
+      if (file) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.style.maxWidth = '200px';
+        img.style.marginTop = '10px';
+        preview.appendChild(img);
+      }
+    }
+
+    document.getElementById('productForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Product saved (dummy functionality for now).');
+      // You can connect this to a real backend or localStorage.
+    });
+  </script>
+</body>
+</html>

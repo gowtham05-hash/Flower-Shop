@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Product - Flower Shop Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #fff0f5;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h2 {
+      color: #ff69b4;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .success-message {
+      color: green;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>➕ Add New Product</h2>
+    <form id="productForm">
+      <label for="pname">Product Name:</label>
+      <input type="text" id="pname" required />
+
+      <label for="pprice">Price (₹):</label>
+      <input type="number" id="pprice" required />
+
+      <label for="pimage">Image URL:</label>
+      <input type="text" id="pimage" required />
+
+      <label for="pdesc">Description:</label>
+      <textarea id="pdesc" required></textarea>
+
+      <button type="submit">Add Product</button>
+      <div id="message" class="success-message"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("productForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("pname").value;
+      const price = document.getElementById("pprice").value;
+      const image = document.getElementById("pimage").value;
+      const desc = document.getElementById("pdesc").value;
+
+      const newProduct = {
+        name: name,
+        price: price,
+        image: image,
+        desc: desc
+      };
+
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+      products.push(newProduct);
+      localStorage.setItem("products", JSON.stringify(products));
+
+      document.getElementById("message").innerText = "✅ Product added successfully!";
+      document.getElementById("productForm").reset();
+    });
+  </script>
+</body>
+</html>

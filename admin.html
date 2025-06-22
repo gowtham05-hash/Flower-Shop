@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flower Shop Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: #f9f9f9;
+    }
+
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background-color: #ffb6c1;
+      padding: 20px;
+      color: white;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: 12px 10px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background-color: #ff69b4;
+    }
+
+    .sidebar ul li a i {
+      margin-right: 10px;
+    }
+
+    .main {
+      margin-left: 240px;
+      width: calc(100% - 240px);
+      padding: 20px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .topbar h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid #ff69b4;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      flex: 1;
+      min-width: 200px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #ff69b4;
+    }
+
+    .card p {
+      font-size: 22px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🌸 LLB Admin</h2>
+    <ul>
+      <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="products.html"><i class="fas fa-box-open"></i> Products</a></li>
+      <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+      <li><a href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li><a href="setting.html"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="adminlogin.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="topbar">
+      <h1>Welcome, Admin</h1>
+      <div class="profile">
+        <span>Hello!</span>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Sales</h3>
+        <p>₹14,200</p>
+      </div>
+      <div class="card">
+        <h3>Today's Orders</h3>
+        <p>132</p>
+      </div>
+      <div class="card">
+        <h3>Products in Stock</h3>
+        <p>120</p>
+      </div>
+      <div class="card">
+        <h3>New Customers</h3>
+        <p>45</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

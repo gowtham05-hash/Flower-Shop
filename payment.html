@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Options</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .payment-container {
+      background: white;
+      padding: 40px;
+      padding-left: 22px;
+      width: 420px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .payment-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 10px;
+
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .pay-btn {
+      background-color: #7a5af8;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 14px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .pay-btn:hover {
+      background-color: #6342e6;
+    }
+
+    .total-display {
+      margin-top: 10px;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .payment-methods input {
+      margin-right: 6px;
+    }
+
+    .payment-section {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-container">
+    <h2>Choose Payment Method</h2>
+
+    <div class="payment-methods">
+      <label><input type="radio" name="payment" value="card" checked> <img src="https://www.pngplay.com/wp-content/uploads/6/ATM-Card-Background-PNG-Image.png" width="20px" height="20px" alt=""> Card</label>
+      <label><input type="radio" name="payment" value="upi"> <img src="https://framerusercontent.com/images/3pKkphejOURRIjQeqxoKVHmcJk.png" width="20px" height="20px" alt=""> UPI</label>
+      <label><input type="radio" name="payment" value="cod"> <img src="https://th.bing.com/th/id/OIP.lCh7SAQXaMHFdlWlpoPj3QHaFp?cb=iwc1&rs=1&pid=ImgDetMain" width="20px" height="20px" alt=""> COD</label>
+    </div>
+
+    
+    <div class="payment-section" id="card-section">
+      <div class="form-group"><input type="email" placeholder="Email" required></div>
+      <div class="form-group"><input type="text" placeholder="Card Number" maxlength="19" required></div>
+      <div class="form-group"><input type="text" placeholder="MM/YY" maxlength="5" required></div>
+      <div class="form-group"><input type="password" placeholder="CVV" maxlength="3" required></div>
+      <div class="form-group"><input type="text" placeholder="Name on Card" required></div>
+    </div>
+
+    
+    <div class="payment-section" id="upi-section">
+      <div class="form-group">
+        <input type="text" placeholder="Enter UPI ID (e.g. user@okaxis)" required>
+      </div>
+    </div>
+
+
+    <div class="payment-section" id="cod-section">
+      <p style="text-align:center; font-weight: bold;">Pay ₹<span id="cod-amount"></span> when your order arrives.</p>
+    </div>
+
+    
+    <div class="form-group">
+      <select>
+        <option value="">Country or Region</option>
+        <option value="India">India</option>
+        <option value="USA">United States</option>
+        <option value="UK">United Kingdom</option>
+      </select>
+    </div>
+
+    <div class="total-display"></div>
+    <button class="pay-btn" onclick="processPayment()">Confirm & Pay : ₹<span id="total-amount"></span></button>
+  </div>
+
+  <script>
+    const total = localStorage.getItem("orderTotal") || "0.00";
+    document.getElementById("total-amount").textContent = total;
+    document.getElementById("cod-amount").textContent = total;
+
+    const sections = {
+      card: document.getElementById("card-section"),
+      upi: document.getElementById("upi-section"),
+      cod: document.getElementById("cod-section")
+    };
+
+    function showSection(type) {
+      Object.keys(sections).forEach(key => {
+        sections[key].classList.remove("visible");
+      });
+      sections[type].classList.add("visible");
+    }
+
+    document.querySelectorAll('input[name="payment"]').forEach(input => {
+      input.addEventListener("change", (e) => {
+        showSection(e.target.value);
+      });
+    });
+
+
+    showSection("card");
+
+    function processPayment() {
+  const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+
+  let isValid = true;
+
+  if (selectedPayment === "card") {
+    const cardInputs = document.querySelectorAll("#card-section input");
+    cardInputs.forEach(input => {
+      if (!input.value.trim()) {
+        input.style.border = "1px solid red";
+        isValid = false;
+      } else {
+        input.style.border = "1px solid #ccc";
+      }
+    });
+  } else if (selectedPayment === "upi") {
+    const upiInput = document.querySelector("#upi-section input");
+    if (!upiInput.value.trim()) {
+      upiInput.style.border = "1px solid red";
+      isValid = false;
+    } else {
+      upiInput.style.border = "1px solid #ccc";
+    }
+  }
+
+
+  if (!isValid) {
+    alert("❌ Please fill in all required fields!");
+    return;
+  }
+
+  alert("✅ Payment successful via selected method!");
+  localStorage.removeItem('data');
+  localStorage.removeItem('orderTotal');
+  window.location.href = "thankyou.html";
+}
+
+  </script>
+
+</body>
+</html>

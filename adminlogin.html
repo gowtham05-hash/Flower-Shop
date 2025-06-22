@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login - Flower Shop</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #ffe4e1, #ffb6c1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-bottom: 10px;
+  color: #ff69b4;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #666;
+}
+
+form {
+  text-align: left;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #444;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #ff1493;
+}
+
+.note {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+.note a {
+  color: #ff69b4;
+  text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h2>🌸 Lush Love and Blooms Admin</h2>
+      <p class="subtitle">Welcome back! Please login to continue.</p>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+
+        <button type="submit">Login</button>
+        <p class="note">Forgot password? <a href="#">Reset</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "admin" && password === "admin123") {
+        alert("Login successful!");
+        window.location.href = "admin.html"; // redirect to dashboard
+      } else {
+        alert("Invalid credentials. Try admin / admin123");
+      }
+    });
+  </script>
+</body>
+</html>

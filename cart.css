@@ -1,0 +1,90 @@
+.cart{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 400px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    box-shadow: 0 1px 4px rgba(40,37,37,0.1);
+}
+.cart-active{
+    right: 0;
+    transition: 0.5s;
+}
+.cart-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.cart-title{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+}
+.cart-box{
+    display: grid;
+    grid-template-columns: 32% 50% 18%;
+    align-items: center;
+    gap: 16px;
+    margin-top: 1rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+}
+.detail-box{
+    display: grid;
+    row-gap: 0.5rem;
+}
+.price-box{
+    display: flex;
+    justify-content: space-between;
+}
+.cart-food-title{
+    color: white;
+}
+.cart-price{
+    font-weight: 900;
+}
+.cart-quantity{
+    text-align: center;
+    width: 2.4rem;
+    outline: none;
+}
+.cart-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+.cart-remove{
+    width: 30px;
+    height: 30px;
+}
+.total{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.total-title{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.total-price{
+    margin-left: 0.5rem;
+}
+.btn-buy{
+    padding: 12px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}

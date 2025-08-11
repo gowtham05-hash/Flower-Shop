@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-title">
+            <h1><a href="index.html">Flowers</a></h1>
+            <input type="text" placeholder="Search for flowers">
+            <img src="./assets/search_icon.png" alt="Search Icon" class="search-icon">
+            <div class="nav-top">
+                <p class="sigin">Sigin</p>
+                <p class="cart1"><a href="shoppingcart.html">Cart</a></p>
+            </div>
+        </div>
+    </nav>
+    <div class="header-slider">
+        <div class="text">
+            <h2 class="more">MORE THAN JUST FLOWERS</h2>
+            <p class="empty">No Empty Promise - Just Fresh Flowers, Fast!</p>
+            <button class="shop">Shop Now</button>
+        </div>
+    </div>
+    <div class="dis">
+        <div class="bor">
+            <div class="imge">
+                <a href="product2.html"><img class="porduct-img" src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/DEC2024/PinkRosesBouquet-1733814404242.webp" alt=""></a>
+                <p class="name">Pink Roses Bouquet</p>
+                <p class="price">Rs.600-/-</p>
+                <p>4.60 <img class="star" src="https://www.nicepng.com/png/detail/115-1150391_highly-suited-rating-star-single-png.png" alt=""></p>
+                <button class="add">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Add more products here as needed -->
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadFlower);
+
+        function loadFlower() {
+            loadContent();
+        }
+
+        function loadContent() {
+            let cartBtns = document.querySelectorAll('.add');
+            cartBtns.forEach((btn) => {
+                btn.addEventListener('click', addCart);
+            });
+        }
+
+        function addCart() {
+            let flower = this.closest('.imge');
+            let title = flower.querySelector('.name').innerHTML;
+            let price = flower.querySelector('.price').innerHTML;
+            let rate = flower.querySelector('.star').src;
+            let image = flower.querySelector('.porduct-img').src;
+
+            // Create a product object
+            let product = {
+                title: title,
+                price: price,
+                rate: rate,
+                image: image
+            };
+
+            // Get existing cart items from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product); // Add the new product to the cart
+
+            // Save the updated cart back to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${title} has been added to your cart!`);
+        }
+    </script>
+</body>
+</html>

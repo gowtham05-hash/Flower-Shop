@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>cart</title>
+    <style>
+        .cart{
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 400px;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            box-shadow: 0 1px 4px rgba(40,37,37,0.1);
+        }
+        .cart-active{
+            right: 0;
+            transition: 0.5s;
+        }
+        .cart-img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .cart-title{
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+        }
+        .cart-box{
+            display: grid;
+            grid-template-columns: 32% 50% 18%;
+            align-items: center;
+            gap: 16px;
+            margin-top: 1rem;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+        }
+        .detail-box{
+            display: grid;
+            row-gap: 0.5rem;
+        }
+        .price-box{
+            display: flex;
+            justify-content: space-between;
+        }
+        .cart-food-title{
+            color: white;
+        }
+        .cart-price{
+            font-weight: 900;
+        }
+        .cart-quantity{
+            text-align: center;
+            width: 2.4rem;
+            outline: none;
+        }
+        .cart-close{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+        .cart-remove{
+            width: 30px;
+            height: 30px;
+        }
+        .total{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .total-title{
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .total-price{
+            margin-left: 0.5rem;
+        }
+        .btn-buy{
+            padding: 12px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-title">
+            <h1> <a href="index.html">Flowers</a></h1>
+            <input type="text" placeholder="Search for flowers">
+            <img src="./assets/search_icon.png" alt="Search Icon" class="search-icon">
+            <div class="nav-top">
+                <p class="sigin">Sigin</p>
+                <p class="cart1">Cart</p>
+            </div>
+        </div>
+    </nav>
+    <div class="dis">
+        <div class="bor">
+            <div class="imge">
+                <a href="product2.html"><img class="porduct-img" src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/DEC2024/PinkRosesBouquet-1733814404242.webp" alt=""></a>
+                <p class="name">Pink Roses Bouquet</p>
+                <p class="price">Rs.600-/-</p>
+                <p>4.60 <img class="star" src="https://www.nicepng.com/png/detail/115-1150391_highly-suited-rating-star-single-png.png" alt=""> </p>
+                <button class="add">Add to Cart</button>
+            </div>
+        </div>
+        <div class="bor">
+            <div class="imge">
+                <a href="product.html"><img class="porduct-img" src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/13774_93_13774.webp" alt=""></a>
+                <p class="name">Bouquet of Yellow Roses & Teddy</p>
+                <p class="price">Rs.900-/-</p>
+                <p>4.70 <img class="star" src="https://www.nicepng.com/png/detail/115-1150391_highly-suited-rating-star-single-png.png" alt=""> </p>
+                <button class="add">Add to Cart</button>
+            </div>
+        </div>
+        <div class="bor">
+            <div class="imge">
+                <a href="product4.html"> <img class="porduct-img" src="https://www.bloomsflora.com/_next/image?url=https%3A%2F%2Fcdn.bloomsflora.com%2Fuploads%2Fproduct%2Fbloomsflora%2F13571_80_13571.webp&w=828&q=75" alt=""></a>
+                <p class="name">Pink Gerberas Bouquet</p>
+                <p class="price">Rs.1,800-/-</p>
+                <p>4.60 <img class="star" src="https://www.nicepng.com/png/detail/115-1150391_highly-suited-rating-star-single-png.png" alt=""> </p>
+                <button class="add">Add to Cart</button>
+            </div>
+        </div>
+        <div class="bor">
+            <div class="imge">
+                <a href="product3.html"><img class="porduct-img" src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/OCT2024/1730096243926-13698.webp" alt=""></a>
+                <p class="name">Pink & Yellow Roses Bouquet With Teddy</p>
+                <p class="price">Rs.1,200-/-</p>
+                <p>4.50 <img class="star" src="https://www.nicepng.com/png/detail/115-1150391_highly-suited-rating-star-single-png.png" alt=""> </p>
+                <button class="add">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="cart">
+        <div class="cart-title">Cart Items</div>
+        <div class="cart-content">
+            <div class="cart-box">
+                <img class="cart-img" src="https://cdn.bloomsflora.com/uploads/product/bloomsflora/13774_93_13774.webp" alt="">
+                <div class="detail-box">
+                    <div class="cart-food-title">Bouquet of Yellow Roses & Teddy</div>
+                    <div class="price-box">
+                        <div class="cart-price">${price}</div>
+                        <div class="cart-atm">${price}</div>
+                    </div>
+                    <input type="number" value="1" class="cart-quantity">
+                </div>
+                <img class="cart-remove" src="https://cdn-icons-png.flaticon.com/512/3838/3838817.png" alt="">
+            </div>
+        </div>
+        <div class="total">
+            <div class="total-tile">Total</div>
+            <div class="total-price">Rs.0</div>
+        </div>
+        <button class="btn-buy">Place Order</button>
+        <img class="cart-close" src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png" alt="">
+    </div>
+    <script>
+        const btnCart=document.querySelector('.cart1');
+        const Cart=document.querySelector('.cart');
+        const btnClose=document.querySelector('.cart-close');
+
+        btnCart.addEventListener('click',()=>{
+            Cart.classList.add('cart-active');
+        })
+        btnClose.addEventListener('click',()=>{
+            Cart.classList.remove('cart-active');
+        })
+        document.addEventListener('DOMContentLoaded',loadFood);
+        function loadFood(){
+            loadContent();
+        }
+        function loadContent(){
+            let btnRemove=document.querySelectorAll('.cart-remove');
+            btnRemove.forEach((btn)=>{
+                btn.addEventListener('click',removeItem);
+            });
+
+            let cartBtns=document.querySelectorAll('.add');
+            cartBtns.forEach((btn)=>{
+                btn.addEventListener('click',addCart);
+            });
+        }
+
+        function removeItem(){
+            if(confirm('Are you Sure to Remove this item')){
+                this.parentElement.remove();
+            }  
+        }
+
+        function addCart(){
+            let food=this.parentElement;
+            let title = food.querySelector('.name').innerHTML;
+            let price = food.querySelector('.price').innerHTML;
+            let image = food.querySelector('.porduct-img').src;
+
+            let newProductElement=createCartProduct(title,price,image);
+            let element=document.createElement('div');
+            element.innerHTML=newProductElement;
+            let cartBasket=document.querySelector('.cart-content');
+            cartBasket.append(element);
+            loadContent();
+        }
+        function createCartProduct(title,price,image){
+            return`
+            <div class="cart-box">
+                <img class="cart-img" src="${image}" alt="">
+                <div class="detail-box">
+                    <div class="cart-food-title">${title}</div>
+                    <div class="price-box">
+                        <div class="cart-price">${price}</div>
+                        <div class="cart-atm">${price}</div>
+                    </div>
+                    <input type="number" value="1" class="cart-quantity">
+                </div>
+                <img class="cart-remove" src="https://cdn-icons-png.flaticon.com/512/3838/3838817.png" alt="">
+            </div>`
+        }
+    </script>
+</body>
+</html>
